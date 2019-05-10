@@ -2,12 +2,6 @@ var {Shop, Item} = require('../src/gilded_rose.js');
 describe("Gilded Rose", function() {
   var gildedRose, items;
 
-  function updateNTimes(n) {
-    for (i = 0; i < n; i++) {
-      items = gildedRose.updateQuality();
-    }
-  };
-
   function c (thing) {
     console.log(thing);
   };
