@@ -37,6 +37,36 @@ describe("Gilded Rose", function() {
     })
   });
 
+  describe("updating a conjured object", function () {
+    beforeEach(function () {
+      gildedRose = new Shop([ new Item("Conjured item", 10, 10) ]);
+      items = gildedRose.updateQuality();
+    })
+
+    it("has a name", function() {
+      expect(items[0].name).toEqual("Conjured item");
+    });
+
+    it("the quality decreases by 2", function() {
+      expect(items[0].quality).toEqual(8);
+    });
+
+    it("the sell by date decreases by 1", function() {
+      expect(items[0].sellIn).toEqual(9);
+    });
+
+    it("once the sell by date is reached it degrades twice as fast", function () {
+      gildedRose = new Shop([ new Item("Conjured item", 0, 10) ]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(6);
+    });
+
+    it("the quality can't decrease below zero", function () {
+      gildedRose = new Shop([ new Item("Conjured item", 10, 0) ]);
+      items = gildedRose.updateQuality();
+      expect(items[0].quality).toEqual(0);
+    })
+  });
   describe("updating Aged Brie", function () {
     beforeEach(function () {
       gildedRose = new Shop([ new Item("Aged Brie", 10, 10) ]);

@@ -24,6 +24,9 @@ class Shop {
         case "Backstage passes to a TAFKAL80ETC concert":
           that._updateQualityBackstagePass(item)
           break;
+        case "Conjured item":
+          that._updateQualityConjuredItem(item);
+          break;
         default:
           that._updateQualityNormalItem(item)
       }
@@ -58,6 +61,14 @@ class Shop {
       this._incrementQuality(item, 2)
     } else if (item.sellIn > 10) {
       this._incrementQuality(item, 1)
+    }
+  }
+
+  _updateQualityConjuredItem(item) {
+    if (item.sellIn < 1) {
+      this._incrementQuality(item, -4)
+    } else {
+      this._incrementQuality(item, -2)
     }
   }
 
